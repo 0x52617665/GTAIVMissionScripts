@@ -1,0 +1,111 @@
+void main()
+{
+    l_U0 = 1;
+    l_U1 = 0;
+    l_U167 = -1;
+    sub_28( l_U169 );
+    while (true)
+    {
+        if (IS_PLAYER_PLAYING( sub_481() ))
+        {
+            if ((g_U8210) || (NOT g_U10978))
+            {
+                sub_542( 8 );
+            }
+            if ((NOT g_U8210) AND ((NOT g_U10978) AND (NOT (IS_CHAR_IN_ANY_CAR( sub_570() )))))
+            {
+                TERMINATE_THIS_SCRIPT();
+            }
+            if (NOT sub_757())
+            {
+                TERMINATE_THIS_SCRIPT();
+            }
+        }
+        WAIT( 0 );
+    }
+    return;
+}
+
+void sub_28(unknown uParam0)
+{
+    int I;
+
+    sub_37();
+    if (DOES_BLIP_EXIST( g_U8074._fU0 ))
+    {
+        if ((GET_NUMBER_OF_INSTANCES_OF_STREAMED_SCRIPT( "PDBMostWanted" )) == 0)
+        {
+            REMOVE_BLIP( g_U8074._fU0 );
+        }
+    }
+    else
+    {
+        sub_150( uParam0 );
+        ADD_BLIP_FOR_COORD( g_U2273[uParam0]._fU32._fU16._fU0, g_U2273[uParam0]._fU32._fU16._fU4, g_U2273[uParam0]._fU32._fU16._fU8, ref g_U8074._fU0 );
+        CHANGE_BLIP_COLOUR( g_U8074._fU0, 5 );
+        PRINT_NOW( "PDB_BLIPADD", 7500, 1 );
+        for ( I = 0; I <= 3; I++ )
+        {
+            CHANGE_BLIP_DISPLAY( g_U8074._fU0, 0 );
+            WAIT( 10 );
+            CHANGE_BLIP_DISPLAY( g_U8074._fU0, 4 );
+            WAIT( 10 );
+        }
+        g_U8074._fU4 = {g_U2273[uParam0]._fU32._fU16};
+        SET_ROUTE( g_U8074._fU0, 1 );
+    }
+    return;
+}
+
+void sub_37()
+{
+    g_U8074._fU4 = {-3000.00000000, -3000.00000000, -3000.00000000};
+    return;
+}
+
+void sub_150(int iParam0)
+{
+    if ((iParam0 < 100) AND (iParam0 > -1))
+    {
+        g_U8083 = iParam0;
+    }
+    else
+    {
+        SCRIPT_ASSERT( "For some reason the index is out of bounds" );
+    }
+    return;
+}
+
+void sub_481()
+{
+    return CONVERT_INT_TO_PLAYERINDEX( GET_PLAYER_ID() );
+}
+
+int sub_542(unknown uParam0)
+{
+    if (DOES_BLIP_EXIST( g_U8074._fU0 ))
+    {
+        if (LOCATE_CHAR_ANY_MEANS_3D( sub_570(), g_U8074._fU4._fU0, g_U8074._fU4._fU4, g_U8074._fU4._fU8, 50.00000000, 50.00000000, 15.00000000, 0 ))
+        {
+            SET_ROUTE( g_U8074._fU0, 0 );
+            REMOVE_BLIP( g_U8074._fU0 );
+            g_U8074._fU0 = nil;
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void sub_570()
+{
+    unknown Result;
+
+    GET_PLAYER_CHAR( CONVERT_INT_TO_PLAYERINDEX( GET_PLAYER_ID() ), ref Result );
+    return Result;
+}
+
+void sub_757()
+{
+    return DOES_BLIP_EXIST( g_U8074._fU0 );
+}
+
