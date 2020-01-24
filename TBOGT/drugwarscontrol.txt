@@ -48,10 +48,9 @@ void main()
     {
         l_U131 = 1;
     }
-    l_U132 = 1;
-    sub_289();
-    sub_720();
-    while (l_U132)
+    sub_StartGangWar();
+
+    while (true)
     {
         switch (l_U131)
         {
@@ -62,7 +61,7 @@ void main()
             sub_3958();
             break;
             case 2:
-            sub_8003();
+            sub_LoadGangWar();
             break;
             case -1: break;
         }
@@ -72,31 +71,31 @@ void main()
     return;
 }
 
-void sub_289()
+void sub_StartGangWar()
 {
     PRINTSTRING( "\n\n\n      -----> START GANG WAR C <-----" );
-    l_U161[0] = {-1265.48500000, 1314.77500000, 20.79710000};
-    l_U161[1] = {-1430.95200000, 506.92380000, 14.50880000};
-    l_U161[2] = {-1535.32800000, 871.91960000, 20.90170000};
-    l_U171[0] = {-470.57730000, 677.95950000, 9.40030000};
-    l_U171[1] = {-334.14460000, 1593.07700000, 19.47840000};
-    l_U171[2] = {-91.67290000, -315.97170000, 13.76250000};
-    l_U181[0] = {946.48760000, 1829.47100000, 19.86310000};
-    l_U181[1] = {494.80400000, 1618.75400000, 19.13400000};
-    l_U188[0] = {1192.87700000, 607.41020000, 37.75080000};
-    l_U188[1] = {1137.45000000, -401.04030000, 18.85560000};
+    l_AlderneyTrigger[0] = {-1265.48500000, 1314.77500000, 20.79710000};
+    l_AlderneyTrigger[1] = {-1430.95200000, 506.92380000, 14.50880000};
+    l_AlderneyTrigger[2] = {-1535.32800000, 871.91960000, 20.90170000};
+    l_AlgonquinTrigger[0] = {-470.57730000, 677.95950000, 9.40030000};
+    l_AlgonquinTrigger[1] = {-334.14460000, 1593.07700000, 19.47840000};
+    l_AlgonquinTrigger[2] = {-91.67290000, -315.97170000, 13.76250000};
+    l_BohanTrigger[0] = {946.48760000, 1829.47100000, 19.86310000};
+    l_BohanTrigger[1] = {494.80400000, 1618.75400000, 19.13400000};
+    l_BrokerTrigger[0] = {1192.87700000, 607.41020000, 37.75080000};
+    l_BrokerTrigger[1] = {1137.45000000, -401.04030000, 18.85560000};
     if (IS_SCREEN_FADED_OUT())
     {
         DO_SCREEN_FADE_IN( 500 );
     }
-    if (NOT (IS_CHAR_INJURED( sub_617() )))
+    if (NOT (IS_CHAR_INJURED( sub_GetPlayerHandle() )))
     {
-        SET_PLAYER_CONTROL_ADVANCED( sub_671(), 1, 1, 1 );
+        SET_PLAYER_CONTROL_ADVANCED( sub_GetPlayerIndex(), 1, 1, 1 );
     }
     return;
 }
 
-void sub_617()
+void sub_GetPlayerHandle()
 {
     unknown Result;
 
@@ -104,14 +103,9 @@ void sub_617()
     return Result;
 }
 
-void sub_671()
+void sub_GetPlayerIndex()
 {
     return CONVERT_INT_TO_PLAYERINDEX( GET_PLAYER_ID() );
-}
-
-void sub_720()
-{
-    return;
 }
 
 void sub_791()
@@ -130,17 +124,17 @@ void sub_791()
     {
         l_U148 = 0;
     }
-    if ((iVar5 == 0) AND ((iVar4 == 0) AND ((iVar3 == 0) AND ((iVar2 == 0) AND ((NOT (IS_CHAR_DEAD( sub_617() ))) AND ((g_U42894 == 0) AND (g_U12379 == 0)))))))
+    if ((iVar5 == 0) AND ((iVar4 == 0) AND ((iVar3 == 0) AND ((iVar2 == 0) AND ((NOT (IS_CHAR_DEAD( sub_GetPlayerHandle() ))) AND ((g_U42894 == 0) AND (g_U12379 == 0)))))))
     {
         if (l_U138 == 0)
         {
-            if (NOT (DOES_BLIP_EXIST( l_U158 )))
+            if (NOT (DOES_BLIP_EXIST( l_AlgonquinBlip )))
             {
-                if (NOT (LOCATE_CHAR_ANY_MEANS_3D( sub_617(), l_U171[1]._fU0, l_U171[1]._fU4, l_U171[1]._fU8, 2.50000000 * 5, 2.50000000 * 5, 2.50000000 * 5, 0 )))
+                if (NOT (LOCATE_CHAR_ANY_MEANS_3D( sub_GetPlayerHandle(), l_AlgonquinTrigger[1]._fU0, l_AlgonquinTrigger[1]._fU4, l_AlgonquinTrigger[1]._fU8, 2.50000000 * 5, 2.50000000 * 5, 2.50000000 * 5, 0 )))
                 {
-                    ADD_BLIP_FOR_COORD( l_U171[1]._fU0, l_U171[1]._fU4, l_U171[1]._fU8, ref l_U158 );
-                    CHANGE_BLIP_SPRITE( l_U158, 108 );
-                    CHANGE_BLIP_PRIORITY( l_U158, 1 );
+                    ADD_BLIP_FOR_COORD( l_AlgonquinTrigger[1]._fU0, l_AlgonquinTrigger[1]._fU4, l_AlgonquinTrigger[1]._fU8, ref l_AlgonquinBlip );
+                    CHANGE_BLIP_SPRITE( l_AlgonquinBlip, 108 );
+                    CHANGE_BLIP_PRIORITY( l_AlgonquinBlip, 1 );
                     l_U138 = 1;
                 }
             }
@@ -152,11 +146,11 @@ void sub_791()
                 PRINT_HELP( "DW_HELP_00" );
                 g_U42900 = 1;
             }
-            if (DOES_BLIP_EXIST( l_U158 ))
+            if (DOES_BLIP_EXIST( l_AlgonquinBlip ))
             {
-                if (LOCATE_CHAR_ANY_MEANS_3D( sub_617(), l_U171[1]._fU0, l_U171[1]._fU4, l_U171[1]._fU8 + 2.50000000, 2.50000000, 2.50000000, 2.50000000, 1 ))
+                if (LOCATE_CHAR_ANY_MEANS_3D( sub_GetPlayerHandle(), l_AlgonquinTrigger[1]._fU0, l_AlgonquinTrigger[1]._fU4, l_AlgonquinTrigger[1]._fU8 + 2.50000000, 2.50000000, 2.50000000, 2.50000000, 1 ))
                 {
-                    if ((l_U133 == 0) AND (IS_WANTED_LEVEL_GREATER( sub_671(), 0 )))
+                    if ((l_U133 == 0) AND (IS_WANTED_LEVEL_GREATER( sub_GetPlayerIndex(), 0 )))
                     {
                         PRINT_NOW( "DW_lose_cop", 7500, 1 );
                         l_U133 = 1;
@@ -189,9 +183,9 @@ void sub_791()
                             l_U149 = 0;
                         }
                     }
-                    if (IS_CHAR_IN_ANY_CAR( sub_617() ))
+                    if (IS_CHAR_IN_ANY_CAR( sub_GetPlayerHandle() ))
                     {
-                        GET_CAR_CHAR_IS_USING( sub_617(), ref uVar6 );
+                        GET_CAR_CHAR_IS_USING( sub_GetPlayerHandle(), ref uVar6 );
                         if (DOES_VEHICLE_EXIST( uVar6 ))
                         {
                             if (NOT (IS_CAR_ON_FIRE( uVar6 )))
@@ -201,9 +195,9 @@ void sub_791()
                                     g_U12379 = 1;
                                     sub_2834();
                                     l_U135 = 1;
-                                    sub_3663();
+                                    sub_RemoveBlips();
                                     GET_GAME_TIMER( ref l_U120 );
-                                    SET_PLAYER_CONTROL_ADVANCED( sub_671(), 0, 1, 1 );
+                                    SET_PLAYER_CONTROL_ADVANCED( sub_GetPlayerIndex(), 0, 1, 1 );
                                     l_U131++;
                                     l_U131++;
                                 }
@@ -215,9 +209,9 @@ void sub_791()
                         g_U12379 = 1;
                         sub_2834();
                         l_U135 = 1;
-                        sub_3663();
+                        sub_RemoveBlips();
                         GET_GAME_TIMER( ref l_U120 );
-                        SET_PLAYER_CONTROL_ADVANCED( sub_671(), 0, 1, 1 );
+                        SET_PLAYER_CONTROL_ADVANCED( sub_GetPlayerIndex(), 0, 1, 1 );
                         l_U131++;
                         l_U131++;
                     }
@@ -227,7 +221,7 @@ void sub_791()
     }
     else
     {
-        sub_3663();
+        sub_RemoveBlips();
         l_U138 = 0;
     }
     return;
@@ -304,15 +298,15 @@ void sub_1844(unknown uParam0)
 
 int sub_2154()
 {
-    if (IS_CHAR_DEAD( sub_617() ))
+    if (IS_CHAR_DEAD( sub_GetPlayerHandle() ))
     {
         return 0;
     }
-    if (IS_WANTED_LEVEL_GREATER( sub_671(), 0 ))
+    if (IS_WANTED_LEVEL_GREATER( sub_GetPlayerIndex(), 0 ))
     {
         return 0;
     }
-    if (NOT (IS_PLAYER_PLAYING( sub_671() )))
+    if (NOT (IS_PLAYER_PLAYING( sub_GetPlayerIndex() )))
     {
         return 0;
     }
@@ -332,7 +326,7 @@ int sub_2154()
     {
         return 0;
     }
-    if (NOT (CAN_PLAYER_START_MISSION( sub_671() )))
+    if (NOT (CAN_PLAYER_START_MISSION( sub_GetPlayerIndex() )))
     {
         return 0;
     }
@@ -389,9 +383,9 @@ int sub_2389(boolean bParam0, boolean bParam1)
     }
     if (bParam1)
     {
-        if (IS_CHAR_IN_ANY_CAR( sub_617() ))
+        if (IS_CHAR_IN_ANY_CAR( sub_GetPlayerHandle() ))
         {
-            STORE_CAR_CHAR_IS_IN_NO_SAVE( sub_617(), ref uVar4 );
+            STORE_CAR_CHAR_IS_IN_NO_SAVE( sub_GetPlayerHandle(), ref uVar4 );
             if (NOT (IS_CAR_DEAD( uVar4 )))
             {
                 GET_CAR_UPRIGHT_VALUE( uVar4, ref fVar6 );
@@ -404,31 +398,31 @@ int sub_2389(boolean bParam0, boolean bParam1)
     }
     if (bParam0)
     {
-        if (IS_CHAR_IN_ANY_CAR( sub_617() ))
+        if (IS_CHAR_IN_ANY_CAR( sub_GetPlayerHandle() ))
         {
-            STORE_CAR_CHAR_IS_IN_NO_SAVE( sub_617(), ref uVar4 );
+            STORE_CAR_CHAR_IS_IN_NO_SAVE( sub_GetPlayerHandle(), ref uVar4 );
             if (NOT (IS_CAR_DEAD( uVar4 )))
             {
                 GET_DRIVER_OF_CAR( uVar4, ref iVar5 );
-                if (NOT (iVar5 == sub_617()))
+                if (NOT (iVar5 == sub_GetPlayerHandle()))
                 {
                     return 0;
                 }
             }
         }
     }
-    if (IS_CHAR_IN_ANY_CAR( sub_617() ))
+    if (IS_CHAR_IN_ANY_CAR( sub_GetPlayerHandle() ))
     {
-        if (NOT (IS_CHAR_SITTING_IN_ANY_CAR( sub_617() )))
+        if (NOT (IS_CHAR_SITTING_IN_ANY_CAR( sub_GetPlayerHandle() )))
         {
             return 0;
         }
     }
-    if (NOT (IS_PLAYER_READY_FOR_CUTSCENE( sub_671() )))
+    if (NOT (IS_PLAYER_READY_FOR_CUTSCENE( sub_GetPlayerIndex() )))
     {
         return 0;
     }
-    if (NOT (CAN_PLAYER_START_MISSION( sub_671() )))
+    if (NOT (CAN_PLAYER_START_MISSION( sub_GetPlayerIndex() )))
     {
         return 0;
     }
@@ -567,23 +561,23 @@ int sub_3529()
     return 0;
 }
 
-void sub_3663()
+void sub_RemoveBlips()
 {
-    if (DOES_BLIP_EXIST( l_U157 ))
+    if (DOES_BLIP_EXIST( l_AlderneyBlip ))
     {
-        REMOVE_BLIP_AND_CLEAR_INDEX( ref l_U157 );
+        REMOVE_BLIP_AND_CLEAR_INDEX( ref l_AlderneyBlip );
     }
-    if (DOES_BLIP_EXIST( l_U158 ))
+    if (DOES_BLIP_EXIST( l_AlgonquinBlip ))
     {
-        REMOVE_BLIP_AND_CLEAR_INDEX( ref l_U158 );
+        REMOVE_BLIP_AND_CLEAR_INDEX( ref l_AlgonquinBlip );
     }
-    if (DOES_BLIP_EXIST( l_U159 ))
+    if (DOES_BLIP_EXIST( l_BohanBlip ))
     {
-        REMOVE_BLIP_AND_CLEAR_INDEX( ref l_U159 );
+        REMOVE_BLIP_AND_CLEAR_INDEX( ref l_BohanBlip );
     }
-    if (DOES_BLIP_EXIST( l_U160 ))
+    if (DOES_BLIP_EXIST( l_BrokerBlip ))
     {
-        REMOVE_BLIP_AND_CLEAR_INDEX( ref l_U160 );
+        REMOVE_BLIP_AND_CLEAR_INDEX( ref l_BrokerBlip );
     }
     return;
 }
@@ -596,7 +590,7 @@ void sub_3958()
     int iVar5;
     unknown uVar6;
 
-    sub_3967();
+    sub_CreatePickup();
     iVar2 = GET_NUMBER_OF_INSTANCES_OF_STREAMED_SCRIPT( "DrugWarsDeal" );
     iVar3 = GET_NUMBER_OF_INSTANCES_OF_STREAMED_SCRIPT( "DrugWarsConvoy" );
     iVar4 = GET_NUMBER_OF_INSTANCES_OF_STREAMED_SCRIPT( "DrugWarsPickup" );
@@ -605,10 +599,10 @@ void sub_3958()
     {
         l_U148 = 0;
     }
-    if ((iVar5 == 0) AND ((iVar4 == 0) AND ((iVar3 == 0) AND ((iVar2 == 0) AND ((NOT (IS_CHAR_DEAD( sub_617() ))) AND ((g_U42894 == 0) AND (g_U12379 == 0)))))))
+    if ((iVar5 == 0) AND ((iVar4 == 0) AND ((iVar3 == 0) AND ((iVar2 == 0) AND ((NOT (IS_CHAR_DEAD( sub_GetPlayerHandle() ))) AND ((g_U42894 == 0) AND (g_U12379 == 0)))))))
     {
         sub_5009();
-        if (NOT (DOES_BLIP_EXIST( l_U157 )))
+        if (NOT (DOES_BLIP_EXIST( l_AlderneyBlip )))
         {
             GET_GAME_TIMER( ref l_U117 );
             if ((l_U117 - l_U118) > 120000)
@@ -618,19 +612,19 @@ void sub_3958()
                     GENERATE_RANDOM_INT_IN_RANGE( 0, 3, ref l_U127 );
                     l_U134 = 0;
                 }
-                if (NOT (LOCATE_CHAR_ANY_MEANS_3D( sub_617(), l_U161[l_U127]._fU0, l_U161[l_U127]._fU4, l_U161[l_U127]._fU8, 2.50000000 * 5, 2.50000000 * 5, 2.50000000 * 5, 0 )))
+                if (NOT (LOCATE_CHAR_ANY_MEANS_3D( sub_GetPlayerHandle(), l_AlderneyTrigger[l_U127]._fU0, l_AlderneyTrigger[l_U127]._fU4, l_AlderneyTrigger[l_U127]._fU8, 2.50000000 * 5, 2.50000000 * 5, 2.50000000 * 5, 0 )))
                 {
-                    ADD_BLIP_FOR_COORD( l_U161[l_U127]._fU0, l_U161[l_U127]._fU4, l_U161[l_U127]._fU8, ref l_U157 );
-                    CHANGE_BLIP_SPRITE( l_U157, 108 );
-                    CHANGE_BLIP_PRIORITY( l_U157, 1 );
+                    ADD_BLIP_FOR_COORD( l_AlderneyTrigger[l_U127]._fU0, l_AlderneyTrigger[l_U127]._fU4, l_AlderneyTrigger[l_U127]._fU8, ref l_AlderneyBlip );
+                    CHANGE_BLIP_SPRITE( l_AlderneyBlip, 108 );
+                    CHANGE_BLIP_PRIORITY( l_AlderneyBlip, 1 );
                 }
             }
         }
-        if (DOES_BLIP_EXIST( l_U157 ))
+        if (DOES_BLIP_EXIST( l_AlderneyBlip ))
         {
-            if (LOCATE_CHAR_ANY_MEANS_3D( sub_617(), l_U161[l_U127]._fU0, l_U161[l_U127]._fU4, l_U161[l_U127]._fU8 + 2.50000000, 2.50000000, 2.50000000, 2.50000000, 1 ))
+            if (LOCATE_CHAR_ANY_MEANS_3D( sub_GetPlayerHandle(), l_AlderneyTrigger[l_U127]._fU0, l_AlderneyTrigger[l_U127]._fU4, l_AlderneyTrigger[l_U127]._fU8 + 2.50000000, 2.50000000, 2.50000000, 2.50000000, 1 ))
             {
-                if ((l_U133 == 0) AND (IS_WANTED_LEVEL_GREATER( sub_671(), 0 )))
+                if ((l_U133 == 0) AND (IS_WANTED_LEVEL_GREATER( sub_GetPlayerIndex(), 0 )))
                 {
                     PRINT_NOW( "DW_lose_cop", 7500, 1 );
                     l_U133 = 1;
@@ -669,14 +663,14 @@ void sub_3958()
                     sub_2834();
                     l_U134 = 1;
                     l_U139 = 1;
-                    sub_3663();
+                    sub_RemoveBlips();
                     GET_GAME_TIMER( ref l_U118 );
-                    SET_PLAYER_CONTROL_ADVANCED( sub_671(), 0, 1, 1 );
+                    SET_PLAYER_CONTROL_ADVANCED( sub_GetPlayerIndex(), 0, 1, 1 );
                     l_U131++;
                 }
             }
         }
-        if (NOT (DOES_BLIP_EXIST( l_U158 )))
+        if (NOT (DOES_BLIP_EXIST( l_AlgonquinBlip )))
         {
             GET_GAME_TIMER( ref l_U119 );
             if ((l_U119 - l_U120) > 120000)
@@ -686,19 +680,19 @@ void sub_3958()
                     GENERATE_RANDOM_INT_IN_RANGE( 0, 3, ref l_U128 );
                     l_U135 = 0;
                 }
-                if (NOT (LOCATE_CHAR_ANY_MEANS_3D( sub_617(), l_U171[l_U128]._fU0, l_U171[l_U128]._fU4, l_U171[l_U128]._fU8, 2.50000000 * 5, 2.50000000 * 5, 2.50000000 * 5, 0 )))
+                if (NOT (LOCATE_CHAR_ANY_MEANS_3D( sub_GetPlayerHandle(), l_AlgonquinTrigger[l_U128]._fU0, l_AlgonquinTrigger[l_U128]._fU4, l_AlgonquinTrigger[l_U128]._fU8, 2.50000000 * 5, 2.50000000 * 5, 2.50000000 * 5, 0 )))
                 {
-                    ADD_BLIP_FOR_COORD( l_U171[l_U128]._fU0, l_U171[l_U128]._fU4, l_U171[l_U128]._fU8, ref l_U158 );
-                    CHANGE_BLIP_SPRITE( l_U158, 108 );
-                    CHANGE_BLIP_PRIORITY( l_U158, 1 );
+                    ADD_BLIP_FOR_COORD( l_AlgonquinTrigger[l_U128]._fU0, l_AlgonquinTrigger[l_U128]._fU4, l_AlgonquinTrigger[l_U128]._fU8, ref l_AlgonquinBlip );
+                    CHANGE_BLIP_SPRITE( l_AlgonquinBlip, 108 );
+                    CHANGE_BLIP_PRIORITY( l_AlgonquinBlip, 1 );
                 }
             }
         }
-        if (DOES_BLIP_EXIST( l_U158 ))
+        if (DOES_BLIP_EXIST( l_AlgonquinBlip ))
         {
-            if (LOCATE_CHAR_ANY_MEANS_3D( sub_617(), l_U171[l_U128]._fU0, l_U171[l_U128]._fU4, l_U171[l_U128]._fU8 + 2.50000000, 2.50000000, 2.50000000, 2.50000000, 1 ))
+            if (LOCATE_CHAR_ANY_MEANS_3D( sub_GetPlayerHandle(), l_AlgonquinTrigger[l_U128]._fU0, l_AlgonquinTrigger[l_U128]._fU4, l_AlgonquinTrigger[l_U128]._fU8 + 2.50000000, 2.50000000, 2.50000000, 2.50000000, 1 ))
             {
-                if ((l_U133 == 0) AND (IS_WANTED_LEVEL_GREATER( sub_671(), 0 )))
+                if ((l_U133 == 0) AND (IS_WANTED_LEVEL_GREATER( sub_GetPlayerIndex(), 0 )))
                 {
                     PRINT_NOW( "DW_lose_cop", 7500, 1 );
                     l_U133 = 1;
@@ -734,14 +728,14 @@ void sub_3958()
                     sub_2834();
                     l_U135 = 1;
                     l_U140 = 1;
-                    sub_3663();
+                    sub_RemoveBlips();
                     GET_GAME_TIMER( ref l_U120 );
-                    SET_PLAYER_CONTROL_ADVANCED( sub_671(), 0, 1, 1 );
+                    SET_PLAYER_CONTROL_ADVANCED( sub_GetPlayerIndex(), 0, 1, 1 );
                     l_U131++;
                 }
             }
         }
-        if (NOT (DOES_BLIP_EXIST( l_U159 )))
+        if (NOT (DOES_BLIP_EXIST( l_BohanBlip )))
         {
             GET_GAME_TIMER( ref l_U121 );
             if ((l_U121 - l_U122) > 120000)
@@ -751,19 +745,19 @@ void sub_3958()
                     GENERATE_RANDOM_INT_IN_RANGE( 0, 2, ref l_U129 );
                     l_U136 = 0;
                 }
-                if (NOT (LOCATE_CHAR_ANY_MEANS_3D( sub_617(), l_U181[l_U129]._fU0, l_U181[l_U129]._fU4, l_U181[l_U129]._fU8, 2.50000000 * 5, 2.50000000 * 5, 2.50000000 * 5, 0 )))
+                if (NOT (LOCATE_CHAR_ANY_MEANS_3D( sub_GetPlayerHandle(), l_BohanTrigger[l_U129]._fU0, l_BohanTrigger[l_U129]._fU4, l_BohanTrigger[l_U129]._fU8, 2.50000000 * 5, 2.50000000 * 5, 2.50000000 * 5, 0 )))
                 {
-                    ADD_BLIP_FOR_COORD( l_U181[l_U129]._fU0, l_U181[l_U129]._fU4, l_U181[l_U129]._fU8, ref l_U159 );
-                    CHANGE_BLIP_SPRITE( l_U159, 108 );
-                    CHANGE_BLIP_PRIORITY( l_U159, 1 );
+                    ADD_BLIP_FOR_COORD( l_BohanTrigger[l_U129]._fU0, l_BohanTrigger[l_U129]._fU4, l_BohanTrigger[l_U129]._fU8, ref l_BohanBlip );
+                    CHANGE_BLIP_SPRITE( l_BohanBlip, 108 );
+                    CHANGE_BLIP_PRIORITY( l_BohanBlip, 1 );
                 }
             }
         }
-        if (DOES_BLIP_EXIST( l_U159 ))
+        if (DOES_BLIP_EXIST( l_BohanBlip ))
         {
-            if (LOCATE_CHAR_ANY_MEANS_3D( sub_617(), l_U181[l_U129]._fU0, l_U181[l_U129]._fU4, l_U181[l_U129]._fU8 + 2.50000000, 2.50000000, 2.50000000, 2.50000000, 1 ))
+            if (LOCATE_CHAR_ANY_MEANS_3D( sub_GetPlayerHandle(), l_BohanTrigger[l_U129]._fU0, l_BohanTrigger[l_U129]._fU4, l_BohanTrigger[l_U129]._fU8 + 2.50000000, 2.50000000, 2.50000000, 2.50000000, 1 ))
             {
-                if ((l_U133 == 0) AND (IS_WANTED_LEVEL_GREATER( sub_671(), 0 )))
+                if ((l_U133 == 0) AND (IS_WANTED_LEVEL_GREATER( sub_GetPlayerIndex(), 0 )))
                 {
                     PRINT_NOW( "DW_lose_cop", 7500, 1 );
                     l_U133 = 1;
@@ -799,36 +793,36 @@ void sub_3958()
                     sub_2834();
                     l_U136 = 1;
                     l_U141 = 1;
-                    sub_3663();
+                    sub_RemoveBlips();
                     GET_GAME_TIMER( ref l_U122 );
-                    SET_PLAYER_CONTROL_ADVANCED( sub_671(), 0, 1, 1 );
+                    SET_PLAYER_CONTROL_ADVANCED( sub_GetPlayerIndex(), 0, 1, 1 );
                     l_U131++;
                 }
             }
         }
-        if (NOT (DOES_BLIP_EXIST( l_U160 )))
+        if (NOT (DOES_BLIP_EXIST( l_BrokerBlip )))
         {
             GET_GAME_TIMER( ref l_U123 );
             if ((l_U123 - l_U124) > 120000)
             {
                 if (l_U137 == 1)
                 {
-                    l_U130 = 0;
+                    l_U130 = 0; // Broker Trigger 2 is never used!
                     l_U137 = 0;
                 }
-                if (NOT (LOCATE_CHAR_ANY_MEANS_3D( sub_617(), l_U188[l_U130]._fU0, l_U188[l_U130]._fU4, l_U188[l_U130]._fU8, 2.50000000 * 5, 2.50000000 * 5, 2.50000000 * 5, 0 )))
+                if (NOT (LOCATE_CHAR_ANY_MEANS_3D( sub_GetPlayerHandle(), l_BrokerTrigger[l_U130]._fU0, l_BrokerTrigger[l_U130]._fU4, l_BrokerTrigger[l_U130]._fU8, 2.50000000 * 5, 2.50000000 * 5, 2.50000000 * 5, 0 )))
                 {
-                    ADD_BLIP_FOR_COORD( l_U188[l_U130]._fU0, l_U188[l_U130]._fU4, l_U188[l_U130]._fU8, ref l_U160 );
-                    CHANGE_BLIP_SPRITE( l_U160, 108 );
-                    CHANGE_BLIP_PRIORITY( l_U160, 1 );
+                    ADD_BLIP_FOR_COORD( l_BrokerTrigger[l_U130]._fU0, l_BrokerTrigger[l_U130]._fU4, l_BrokerTrigger[l_U130]._fU8, ref l_BrokerBlip );
+                    CHANGE_BLIP_SPRITE( l_BrokerBlip, 108 );
+                    CHANGE_BLIP_PRIORITY( l_BrokerBlip, 1 );
                 }
             }
         }
-        if (DOES_BLIP_EXIST( l_U160 ))
+        if (DOES_BLIP_EXIST( l_BrokerBlip ))
         {
-            if (LOCATE_CHAR_ANY_MEANS_3D( sub_617(), l_U188[l_U130]._fU0, l_U188[l_U130]._fU4, l_U188[l_U130]._fU8 + 2.50000000, 2.50000000, 2.50000000, 2.50000000, 1 ))
+            if (LOCATE_CHAR_ANY_MEANS_3D( sub_GetPlayerHandle(), l_BrokerTrigger[l_U130]._fU0, l_BrokerTrigger[l_U130]._fU4, l_BrokerTrigger[l_U130]._fU8 + 2.50000000, 2.50000000, 2.50000000, 2.50000000, 1 ))
             {
-                if ((l_U133 == 0) AND (IS_WANTED_LEVEL_GREATER( sub_671(), 0 )))
+                if ((l_U133 == 0) AND (IS_WANTED_LEVEL_GREATER( sub_GetPlayerIndex(), 0 )))
                 {
                     PRINT_NOW( "DW_lose_cop", 7500, 1 );
                     l_U133 = 1;
@@ -864,9 +858,9 @@ void sub_3958()
                     sub_2834();
                     l_U137 = 1;
                     l_U142 = 1;
-                    sub_3663();
+                    sub_RemoveBlips();
                     GET_GAME_TIMER( ref l_U124 );
-                    SET_PLAYER_CONTROL_ADVANCED( sub_671(), 0, 1, 1 );
+                    SET_PLAYER_CONTROL_ADVANCED( sub_GetPlayerIndex(), 0, 1, 1 );
                     l_U131++;
                 }
             }
@@ -874,12 +868,12 @@ void sub_3958()
     }
     else
     {
-        sub_3663();
+        sub_RemoveBlips();
     }
     return;
 }
 
-void sub_3967()
+void sub_CreatePickup()
 {
     if ((g_U15811[58] == 1) AND (g_U42919 >= 50))
     {
@@ -953,9 +947,9 @@ void sub_5009()
 {
     if (NOT g_U12379)
     {
-        if (IS_PLAYER_PLAYING( sub_671() ))
+        if (IS_PLAYER_PLAYING( sub_GetPlayerIndex() ))
         {
-            if (NOT (IS_CHAR_DEAD( sub_617() )))
+            if (NOT (IS_CHAR_DEAD( sub_GetPlayerHandle() )))
             {
                 if (NOT (IS_THREAD_ACTIVE( g_U818 )))
                 {
@@ -1012,7 +1006,7 @@ void sub_5009()
     return;
 }
 
-void sub_8003()
+void sub_LoadGangWar()
 {
     char[32] cVar2;
     int iVar10;
@@ -1020,7 +1014,7 @@ void sub_8003()
 
     g_U42894 = 1;
     PRINTSTRING( "\n\n\n      -----> LOAD MAIN GANG WAR <-----" );
-    sub_3663();
+    sub_RemoveBlips();
     if (NOT IS_SCREEN_FADED_OUT())
     {
         DO_SCREEN_FADE_OUT( 500 );

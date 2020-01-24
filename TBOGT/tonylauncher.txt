@@ -486,7 +486,7 @@ void sub_1341()
     return sub_1619( uVar6, uVar8 );
 }
 
-int sub_1619(unknown uParam0, unknown uParam1, unknown uParam2, unknown uParam3)
+int sub_1619(unknown uParam0, unknown uParam2)
 {
     unknown uVar6;
     unknown uVar7;
@@ -547,17 +547,17 @@ void sub_1706(unknown uParam0)
     return;
 }
 
-boolean sub_2020(unknown uParam0, unknown uParam1, unknown uParam2, unknown uParam3)
+boolean sub_2020(unknown time1, unknown time2)
 {
-    if (uParam0._fU0 > uParam2._fU0)
+    if (time1._fU0 > time2._fU0)
     {
         return 0;
     }
-    if (uParam0._fU0 < uParam2._fU0)
+    if (time1._fU0 < time2._fU0)
     {
         return 1;
     }
-    return uParam0._fU4 < uParam2._fU4;
+    return time1._fU4 < time2._fU4;
 }
 
 boolean sub_2144(unknown uParam0, unknown uParam1, unknown uParam2, unknown uParam3)

@@ -1,0 +1,10 @@
+Weather Values:
+
+0 = Extra Sunny
+1 = Sunny
+2 = Sunny-Windy
+3 = Cloudy
+4 = Rain
+5 = Drizzle
+6 = Foggy
+7 = Heavy Rain

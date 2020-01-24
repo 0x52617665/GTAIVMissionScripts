@@ -3171,7 +3171,7 @@ void sub_21788(int iParam0)
 
 void sub_21968(int iParam0, unknown uParam1, unknown uParam2, unknown uParam3, unknown uParam4)
 {
-    iParam0->_fU16[iParam0->_fU824] = {uParam1};
+    iParam0->_fU16[iParam0->_fU824] = {uParam1, uParam2, uParam3};
     iParam0->_fU620[iParam0->_fU824] = uParam4;
     iParam0->_fU824++;
     return;
